@@ -59,7 +59,7 @@
       width: 100%; height: 100%;
       object-fit: cover;
       z-index: -2;
-      filter: blur(2px) brightness(0.8);
+      filter: blur(10px) brightness(5);
     }
     #video-overlay {
       position: fixed;
@@ -74,6 +74,42 @@
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg2); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    /* SHINE EFFECT - ĐÃ FIX ĐẸP, DÀI, MỜ DẦN, LẶP SAU 1.5s */
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-effect::before {
+      content: '';
+      position: absolute;
+      top: -300%; left: -300%;
+      width: 600%; height: 600%;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(0, 255, 153, 0.35) 45%,
+        rgba(0, 255, 153, 0.6) 50%,
+        rgba(0, 255, 153, 0.35) 55%,
+        transparent 65%,
+        transparent 100%
+      );
+      transform: translateX(-100%) rotate(45deg);
+      transition: none;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+    }
+    .shine-effect:hover::before {
+      animation: shine-loop 1.5s ease-in-out infinite;
+      opacity: 1;
+    }
+    @keyframes shine-loop {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
     /* Nav */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
@@ -90,6 +126,7 @@
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
+
     /* Hero */
     .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; z-index: 1; }
     .hero h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -99,10 +136,12 @@
     .hero p { max-width: 600px; color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; }
     .btn { padding: 12px 32px; background: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; border-radius: 50px; transition: all 0.4s ease; text-decoration: none; display: inline-block; cursor: pointer; }
     .btn:hover { background: var(--accent); color: var(--bg); transform: translateY(-3px); box-shadow: 0 0 20px rgba(0,255,153,0.4); }
+
     /* Section */
     section { padding: 100px 5%; position: relative; z-index: 1; }
     .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; position: relative; color: var(--text); }
     .section-title::after { content: ''; width: 80px; height: 4px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+
     /* ABOUT */
     .about {
       display: flex;
@@ -122,6 +161,7 @@
       box-shadow: 0 0 30px rgba(0,255,153,0.3);
       transition: all 0.5s ease;
       flex-shrink: 0;
+      cursor: pointer;
     }
     .about-img:hover {
       transform: scale(1.08);
@@ -145,18 +185,47 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    /* Skills */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
-    .skill-item { text-align: center; padding: 1.5rem; background: var(--card); border-radius: 16px; transition: all 0.4s ease; border: 1px solid rgba(0,255,153,0.1); }
-    .skill-item:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,255,153,0.2); border-color: var(--accent); }
-    .skill-item i, .skill-item .fab-roblox { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
-    /* Roblox Icon */
-    .fab-roblox {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23003388"><circle cx="12" cy="12" r="10"/><path fill="%23ffffff" d="M8 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm6 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM11.5 14a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>') no-repeat center;
-      background-size: contain;
-      display: inline-block;
-      width: 3rem; height: 3rem;
+
+    /* Skills - ĐÃ FIX: CENTER ICON + TEXT, PADDING ĐỀU */
+    .skills-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+      gap: 2rem; 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      justify-items: center;
     }
+    .skill-item { 
+      text-align: center; 
+      padding: 1.8rem 1rem; 
+      background: var(--card); 
+      border-radius: 16px; 
+      transition: all 0.4s ease; 
+      border: 1px solid rgba(0,255,153,0.1); 
+      cursor: pointer; 
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 130px;
+    }
+    .skill-item:hover { 
+      transform: translateY(-10px); 
+      box-shadow: 0 10px 30px rgba(0,255,153,0.2); 
+      border-color: var(--accent); 
+    }
+    .skill-item i, .skill-item img, .skill-item .fab-roblox { 
+      font-size: 3.2rem; 
+      color: var(--accent); 
+      margin-bottom: 0.8rem; 
+      display: block;
+    }
+    .skill-item img {
+      width: 60px; height: 60px; object-fit: contain;
+      filter: brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);
+    }
+
     /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .project-card { 
@@ -183,6 +252,7 @@
     .project-info h3 { margin-bottom: 0.5rem; color: var(--accent); }
     .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+
     /* MODAL */
     .modal {
       display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
@@ -194,36 +264,36 @@
       border: 2px solid var(--accent);
     }
     .close {
-  position: absolute;
-  right: 20px; top: 20px;
-  font-size: 2.5rem;
-  color: var(--accent);
-  cursor: pointer;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  width: 50px; height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 255, 153, 0.4);
-  transition: all 0.3s ease;
-}
-
-.close:hover {
-  background: var(--accent);
-  color: var(--bg);
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 255, 153, 0.7);
-}
+      position: absolute;
+      right: 20px; top: 20px;
+      font-size: 2.5rem;
+      color: var(--accent);
+      cursor: pointer;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.6);
+      width: 50px; height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 255, 153, 0.4);
+      transition: all 0.3s ease;
+    }
+    .close:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(0, 255, 153, 0.7);
+    }
     .modal-media { 
       width: 100%; height: 300px; 
       border-radius: 20px 20px 0 0; position: relative; overflow: hidden;
     }
-    .modal-media img { 
+    .modal-media img, .modal-media iframe { 
       width: 100%; height: 100%; 
       object-fit: cover; 
+      border: none;
     }
     .modal-body { padding: 2rem; }
     .modal-title { color: var(--accent); font-size: 2rem; margin-bottom: 1rem; }
@@ -241,11 +311,13 @@
     }
     .modal-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .modal-tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; }
+
     /* Contact */
     .contact form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
     .contact input, .contact textarea { padding: 1rem; background: var(--card); border: 1px solid rgba(0,255,153,0.2); color: var(--text); border-radius: 8px; font-family: inherit; }
     .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(0,255,153,0.3); }
     .success { color: var(--accent); text-align: center; margin-top: 1rem; font-weight: 600; }
+
     /* Sound Control */
     .sound-control {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000;
@@ -255,9 +327,12 @@
       box-shadow: 0 0 15px rgba(0, 255, 153, 0.2);
     }
     .sound-control:hover { background: var(--accent); color: var(--bg); transform: scale(1.1); }
+
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.9rem; position: relative; z-index: 1; }
+
     /* SMOOTH SCROLL */
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
     @media (max-width: 768px) {
       .hero h1 { font-size: 3rem; }
       .typing { font-size: 1.3rem; }
@@ -267,7 +342,10 @@
       .modal-links { flex-direction: column; }
       .modal-media { height: 200px; }
       .sound-control { bottom: 15px; right: 15px; padding: 10px 14px; font-size: 1rem; }
+      .skills-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.5rem; }
+      .skill-item { padding: 1.5rem 0.8rem; min-height: 120px; }
     }
+
     /* ANTI-INSPECT WARNING */
     #antiInspect {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
@@ -286,7 +364,7 @@
     <h1>Không cho phép Inspect</h1>
     <p>Trang web này đã được bảo vệ. Vui lòng không sử dụng F12, chuột phải hoặc các công cụ dev.</p>
     <p>Truy cập bình thường để trải nghiệm tốt nhất.</p>
-    <button class="btn" onclick="location.reload()">Tải lại trang</button>
+    <button class="btn shine-effect" onclick="location.reload()">Tải lại trang</button>
   </div>
 
   <img id="bg-video" src="assets/img/background.gif" alt="background" />
@@ -309,14 +387,14 @@
     <h1>TheCheemsVN</h1>
     <div class="typing">Roblox Developer</div>
     <p>Chuyên làm GUI, UI, web, Minecraft server & Roblox game.</p>
-    <a href="#contact" class="btn">Liên hệ ngay</a>
+    <a href="#contact" class="btn shine-effect">Liên hệ ngay</a>
   </section>
 
   <!-- ABOUT -->
   <section id="about" class="about section">
     <h2 class="section-title">Về tôi</h2>
     <div class="about">
-      <div class="about-img">
+      <div class="about-img shine-effect">
         <img src="assets/img/avatar.png" alt="TheCheemsVN">
       </div>
       <div class="about-text">
@@ -326,36 +404,88 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
+  <!-- SKILLS - ĐÃ THÊM 13 MỤC MỚI + CŨ -->
   <section id="skills" class="section">
     <h2 class="section-title">Kỹ năng</h2>
     <div class="skills-grid">
-      <div class="skill-item">
-        <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" 
-             alt="Roblox Studio" 
-             style="width:60px;height:60px;object-fit:contain;filter:brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);">
-        <div style="text-align:center;">Ro Studio<br><small style="font-size:0.7rem;opacity:0.7;">( 6 Year )</small></div>
+      <!-- 1. Ro Studio (giữ nguyên) -->
+      <div class="skill-item shine-effect">
+        <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" alt="Roblox Studio">
+        <div>Ro Studio<br><small>( 6 Năm )</small></div>
       </div>
-      <div class="skill-item">
-        <i class="fab fa-html5" style="font-size:60px;"></i>
-        <div style="text-align:center;">HTML/CSS<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+
+      <!-- 2. HTML -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-html5"></i>
+        <div>HTML<br><small>( 2 Tháng )</small></div>
       </div>
-      <div class="skill-item">
-        <i class="fab fa-js" style="font-size:60px;"></i>
-        <div style="text-align:center;">JavaScript<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+
+      <!-- 3. CSS -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-css3-alt"></i>
+        <div>CSS<br><small>( 2 Tháng )</small></div>
       </div>
-      <div class="skill-item">
-        <i class="fab fa-java" style="font-size:60px;"></i>
-        <div style="text-align:center;">Java (MC)<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+
+      <!-- 4. C++ -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-code"></i>
+        <div>C++<br><small>( 4 Năm )</small></div>
       </div>
-      <div class="skill-item">
-        <i class="fas fa-paint-brush" style="font-size:60px;"></i>
-        <div style="text-align:center;">UI/UX<br><small style="font-size:0.7rem;opacity:0.7;">( 1 Year )</small></div>
+
+      <!-- 5. Python -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-python"></i>
+        <div>Python<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item">
-        <i class="fas fa-server" style="font-size:60px;"></i>
-        <div style="text-align:center;">Server MC<br><small style="font-size:0.7rem;opacity:0.7;">( 7 Month )</small></div>
+
+      <!-- 6. Luau/Lua -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-scroll"></i>
+        <div>Luau/Lua<br><small>( 6 Năm )</small></div>
       </div>
+
+      <!-- 7. JavaScript -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-js"></i>
+        <div>JavaScript<br><small>( 2 Tháng )</small></div>
+      </div>
+
+      <!-- 8. C# -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-copyright"></i>
+        <div>C#<br><small>( 2 Năm )</small></div>
+      </div>
+
+      <!-- 10. Node.js -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-node-js"></i>
+        <div>Node.js<br><small>( 1 Tháng )</small></div>
+      </div>
+
+      <!-- 11. Java (MC) -->
+      <div class="skill-item shine-effect">
+        <i class="fab fa-java"></i>
+        <div>Java (MC)<br><small>( 2 Tháng )</small></div>
+      </div>
+
+      <!-- 12. UI/UX -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-paint-brush"></i>
+        <div>UI/UX<br><small>( 1 Năm )</small></div>
+      </div>
+
+      <!-- 13. Server MC -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-server"></i>
+        <div>Server MC<br><small>( 7 Tháng )</small></div>
+      </div>
+
+      <!-- 14. Scratch (Cấp 1) -->
+      <div class="skill-item shine-effect">
+        <i class="fas fa-puzzle-piece"></i>
+        <div>Scratch<br><small>( 12 Năm )</small></div>
+      </div>
+
     </div>
   </section>
 
@@ -372,7 +502,7 @@
       <input type="text" id="name" placeholder="Tên của bạn" required>
       <input type="email" id="email" placeholder="Email của bạn" required>
       <textarea id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
-      <button type="submit" class="btn">Gửi tin nhắn</button>
+      <button type="submit" class="btn shine-effect">Gửi tin nhắn</button>
     </form>
     <p class="success" id="status"></p>
   </section>
@@ -380,7 +510,7 @@
   <!-- MODAL CHI TIẾT DỰ ÁN -->
   <div id="projectModal" class="modal">
     <div class="modal-content">
-      <span class="close">×</span>
+      <span class="close shine-effect">×</span>
       <div id="modalMedia" class="modal-media"></div>
       <div class="modal-body">
         <h2 id="modalTitle" class="modal-title"></h2>
@@ -396,7 +526,7 @@
   </footer>
 
   <!-- NÚT ÂM THANH -->
-  <div class="sound-control" id="soundToggle">
+  <div class="sound-control shine-effect" id="soundToggle">
     <i class="fas fa-volume-up"></i>
   </div>
   <audio id="bgm" loop>
@@ -407,13 +537,7 @@
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    // === CẤU HÌNH ===
-    const CONFIG = {
-      theme: "green",
-      video: { blur: 1, brightness: 1 },
-      sound: { autoPlay: true, volume: 0.5 }
-    };
-
+    const CONFIG = { theme: "green", video: { blur: 1, brightness: 1 }, sound: { autoPlay: true, volume: 0.5 } };
     document.body.setAttribute('data-theme', CONFIG.theme);
     document.getElementById('bg-video').style.filter = `blur(${CONFIG.video.blur}px) brightness(${CONFIG.video.brightness})`;
 
@@ -478,7 +602,7 @@
           const path = `assets/img/${p.image}`;
           img.onload = () => {
             const card = document.createElement('div');
-            card.className = 'project-card';
+            card.className = 'project-card shine-effect';
             card.innerHTML = `
               <div class="project-img"><img src="${path}" alt="${p.title}"></div>
               <div class="project-info">
@@ -491,7 +615,7 @@
           };
           img.onerror = () => {
             const card = document.createElement('div');
-            card.className = 'project-card';
+            card.className = 'project-card shine-effect';
             card.innerHTML = `
               <div class="project-img" style="background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;height:500px;font-size:0.9rem;">[Ảnh lỗi]</div>
               <div class="project-info"><h3>${p.title}</h3><div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>
@@ -507,30 +631,28 @@
       });
 
     function showProjectModal(project, imgPath) {
-  document.getElementById('modalTitle').textContent = project.title;
-  document.getElementById('modalDesc').textContent = project.desc;
+      document.getElementById('modalTitle').textContent = project.title;
+      document.getElementById('modalDesc').textContent = project.desc;
 
-  const mediaContainer = document.getElementById('modalMedia');
+      const mediaContainer = document.getElementById('modalMedia');
+      if (project.videoLink && project.videoLink.includes('embed')) {
+        mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else if (imgPath) {
+        mediaContainer.innerHTML = `<img src="${imgPath}" alt="${project.title}">`;
+      } else {
+        mediaContainer.innerHTML = `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;font-style:italic;">Không có media</div>`;
+      }
 
-  if (project.videoLink && project.videoLink.includes('embed')) {
-    // Ưu tiên video YouTube
-    mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  } else if (imgPath) {
-    mediaContainer.innerHTML = `<img src="${imgPath}" alt="${project.title}">`;
-  } else {
-    mediaContainer.innerHTML = `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;font-style:italic;">Không có media</div>`;
-  }
+      const linksContainer = document.getElementById('modalLinks');
+      linksContainer.innerHTML = project.links && project.links.length > 0
+        ? project.links.map(link => `<a href="${link.url}" class="modal-link shine-effect" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
+        : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
 
-  const linksContainer = document.getElementById('modalLinks');
-  linksContainer.innerHTML = project.links && project.links.length > 0
-    ? project.links.map(link => `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
-    : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
+      const techContainer = document.getElementById('modalTech');
+      techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag shine-effect">${t}</span>`).join('');
 
-  const techContainer = document.getElementById('modalTech');
-  techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-
-  modal.style.display = 'flex';
-}
+      modal.style.display = 'flex';
+    }
 
     // === ÂM THANH ===
     const audio = document.getElementById('bgm');
@@ -577,7 +699,6 @@
           console.error('EmailJS error:', error);
         });
     });
-    // === Log test ===
   </script>
 </body>
 </html>
