@@ -52,14 +52,17 @@
       -ms-user-select: none;
       user-select: none;
     }
-    /* VIDEO NỀN */
+    /* VIDEO NỀN - SCALE ĐẸP TRÊN MỌI THIẾT BỊ */
     #bg-video {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
       object-fit: cover;
       z-index: -2;
       filter: blur(10px) brightness(5);
+      transition: transform 0.3s ease;
     }
     #video-overlay {
       position: fixed;
@@ -309,6 +312,8 @@
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.9rem; position: relative; z-index: 1; }
     /* SMOOTH SCROLL */
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    /* RESPONSIVE CHO ĐIỆN THOẠI */
     @media (max-width: 768px) {
       .hero h1 { font-size: 3rem; }
       .typing-container { font-size: 1.3rem; height: 1.8rem; }
@@ -317,10 +322,16 @@
       .modal-content { margin: 10% auto; width: 95%; }
       .modal-links { flex-direction: column; }
       .modal-media { height: 200px; }
-      .sound-control { bottom: 15px; right: 15px; padding: 10px 14px; font-size: 1rem; }
+      .sound-control { bottom: 15px; right: 15px; padding: 10px 14px;-Max font-size: 1rem; }
       .skills-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.5rem; }
       .skill-item { padding: 1.5rem 0.8rem; min-height: 120px; }
+
+      /* DI CHUYỂN BACKGROUND QUA PHẢI ~1/2 ĐỂ THẤY NHÂN VẬT TRÊN ĐIỆN THOẠI */
+      #bg-video {
+        transform: translate(-50%, -50%) translateX(25%);
+      }
     }
+
     /* ANTI-INSPECT WARNING */
     #antiInspect {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
@@ -724,19 +735,16 @@
         const current = "i am " + skills[skillIndex];
 
         if (isPaused) {
-          // Đang pause → không làm gì, chờ hết pause
           requestAnimationFrame(typeWriter);
           return;
         }
 
         if (!isDeleting && charIndex <= current.length) {
-          // ĐANG GÕ
           typingElement.textContent = current.substring(0, charIndex);
           charIndex++;
           setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
         } 
         else if (!isDeleting && charIndex > current.length) {
-          // GÕ XONG → PAUSE
           isPaused = true;
           setTimeout(() => {
             isPaused = false;
@@ -745,13 +753,11 @@
           }, pauseAfterType);
         } 
         else if (isDeleting && charIndex > 0) {
-          // ĐANG XÓA
           typingElement.textContent = current.substring(0, charIndex);
           charIndex--;
           setTimeout(() => requestAnimationFrame(typeWriter), deletingSpeed);
         } 
         else if (isDeleting && charIndex === 0) {
-          // XÓA XONG → CHUYỂN SKILL TIẾP
           isDeleting = false;
           skillIndex = (skillIndex + 1) % skills.length;
           isPaused = true;
@@ -762,7 +768,6 @@
         }
       }
 
-      // Bắt đầu sau 1s
       setTimeout(() => requestAnimationFrame(typeWriter), 1000);
     });
   </script>
