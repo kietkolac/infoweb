@@ -54,14 +54,13 @@
     }
     /* VIDEO NỀN */
     #bg-video {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; /* hoặc contain */
-  z-index: -2;
-  filter: blur(2px) brightness(0.8); /* vẫn áp dụng được */
-}
-
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      filter: blur(2px) brightness(0.8);
+    }
     #video-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -106,16 +105,15 @@
     .section-title::after { content: ''; width: 80px; height: 4px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
     /* ABOUT */
     .about {
-  display: flex;
-  align-items: center;       /* giữa theo chiều dọc */
-  justify-content: center;   /* giữa theo chiều ngang */
-  gap: 3rem;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
     .about-img {
       width: 220px; height: 220px;
       border-radius: 50%;
@@ -131,15 +129,14 @@
     }
     .about-img img { width: 100%; height: 100%; object-fit: cover; }
     .about-text {
-  max-width: 600px;
-  color: var(--gray);
-  text-align: center; /* căn giữa chữ */
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* căn giữa ngang */
-  justify-content: center; /* căn giữa dọc nếu cần */
-}
-
+      max-width: 600px;
+      color: var(--gray);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
     .about-text h3 {
       font-size: 1.9rem;
       margin-bottom: 1rem;
@@ -155,12 +152,12 @@
     .skill-item i, .skill-item .fab-roblox { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
     /* Roblox Icon */
     .fab-roblox {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" viewBox="0 0 24 24" fill="%23003388"><circle cx="12" cy="12" r="10"/><path fill="%23ffffff" d="M8 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm6 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM11.5 14a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>') no-repeat center;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23003388"><circle cx="12" cy="12" r="10"/><path fill="%23ffffff" d="M8 9a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm6 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM11.5 14a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>') no-repeat center;
       background-size: contain;
       display: inline-block;
       width: 3rem; height: 3rem;
     }
-    /* Projects - ẢNH FULL + ĐẸP */
+    /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .project-card { 
       background: var(--card); border-radius: 16px; overflow: hidden; 
@@ -168,7 +165,7 @@
       position: relative;
     }
     .project-card:hover { 
-      transform: translateY(-15px) rotateX(5deg); 
+      transform: translateY(-15px); 
       box-shadow: 0 20px 40px rgba(0,255,153,0.2); 
     }
     .project-img { 
@@ -176,7 +173,7 @@
     }
     .project-img img { 
       width: 100%; height: 100%; 
-      object-fit: center; /* FULL ẢNH, CẮT NẾU CẦN */
+      object-fit: cover; 
       transition: transform 0.5s ease; 
     }
     .project-card:hover .project-img img { 
@@ -186,24 +183,24 @@
     .project-info h3 { margin-bottom: 0.5rem; color: var(--accent); }
     .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-    /* MODAL - ẢNH + VIDEO FULL */
+    /* MODAL */
     .modal {
       display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); justify-content: center; align-items: center;
     }
     .modal-content {
-      background: var(--card); margin: 5% auto; padding: 0; border-radius: 20px; width: 90%; max-width: 800px;
+      background: var(--card); margin: auto; padding: 0; border-radius: 20px; width: 90%; max-width: 800px;
       max-height: 90vh; overflow-y: auto; position: relative;
       border: 2px solid var(--accent);
     }
     .close { position: absolute; right: 20px; top: 20px; font-size: 2.5rem; color: var(--accent); cursor: pointer; z-index: 10; }
     .modal-media { 
-      width: 100%; height: 300px; /* TĂNG CHIỀU CAO */
+      width: 100%; height: 300px; 
       border-radius: 20px 20px 0 0; position: relative; overflow: hidden;
     }
-    .modal-media video, .modal-media img { 
+    .modal-media img { 
       width: 100%; height: 100%; 
-      object-fit: cover; /* FULL MEDIA */
+      object-fit: cover; 
     }
     .modal-body { padding: 2rem; }
     .modal-title { color: var(--accent); font-size: 2rem; margin-bottom: 1rem; }
@@ -237,16 +234,12 @@
     .sound-control:hover { background: var(--accent); color: var(--bg); transform: scale(1.1); }
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.9rem; position: relative; z-index: 1; }
     /* SMOOTH SCROLL */
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     @media (max-width: 768px) {
       .hero h1 { font-size: 3rem; }
       .typing { font-size: 1.3rem; }
       .nav-links { display: none; }
       .about { flex-direction: column; text-align: center; }
-      .about-text { text-align: center; }
       .modal-content { margin: 10% auto; width: 95%; }
       .modal-links { flex-direction: column; }
       .modal-media { height: 200px; }
@@ -276,6 +269,7 @@
   <img id="bg-video" src="assets/img/background.gif" alt="background" />
   <div id="video-overlay"></div>
   <div id="particles-js"></div>
+
   <!-- NAV -->
   <nav>
     <div class="logo">CheemsRoDev</div>
@@ -286,6 +280,7 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
+
   <!-- HERO -->
   <section class="hero">
     <h1>TheCheemsVN</h1>
@@ -293,6 +288,7 @@
     <p>Chuyên làm GUI, UI, web, Minecraft server & Roblox game.</p>
     <a href="#contact" class="btn">Liên hệ ngay</a>
   </section>
+
   <!-- ABOUT -->
   <section id="about" class="about section">
     <h2 class="section-title">Về tôi</h2>
@@ -302,53 +298,50 @@
       </div>
       <div class="about-text">
         <h3>Xin chào! Tôi là TheCheemsVN</h3>
-<p>Chuyên gia Roblox Studio từ GUI tới script và đã làm được 6 năm, thỉnh thoảng làm web cho vui (HTML, CSS, JS), còn thiết kế giao diện và làm Java server Minecraft. Đam mê sáng tạo, tối ưu trải nghiệm và… tự hành hạ bằng 1 đống deadline</p>
+        <p>Chuyên gia Roblox Studio từ GUI tới script và đã làm được 6 năm, thỉnh thoảng làm web cho vui (HTML, CSS, JS), còn thiết kế giao diện và làm Java server Minecraft. Đam mê sáng tạo, tối ưu trải nghiệm và… tự hành hạ bằng 1 đống deadline</p>
       </div>
     </div>
   </section>
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <h2 class="section-title">Kỹ năng</h2>
-  <div class="skills-grid">
-    <div class="skill-item">
-      <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" 
-           alt="Roblox Studio" 
-           style="width:60px;height:60px;object-fit:fit;filter:brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);">
-      <div style="text-align:center;">Ro Studio<br><small style="font-size:0.7rem;opacity:0.7;">( 6 Year )</small></div>
-    </div>
 
-    <div class="skill-item">
-      <i class="fab fa-html5" style="font-size:60px;"></i>
-      <div style="text-align:center;">HTML/CSS<br><small style="font-size:0.7rem;opacity:0.7;">( 6 Year )</small></div>
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h2 class="section-title">Kỹ năng</h2>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" 
+             alt="Roblox Studio" 
+             style="width:60px;height:60px;object-fit:contain;filter:brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);">
+        <div style="text-align:center;">Ro Studio<br><small style="font-size:0.7rem;opacity:0.7;">( 6 Year )</small></div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-html5" style="font-size:60px;"></i>
+        <div style="text-align:center;">HTML/CSS<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-js" style="font-size:60px;"></i>
+        <div style="text-align:center;">JavaScript<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-java" style="font-size:60px;"></i>
+        <div style="text-align:center;">Java (MC)<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-paint-brush" style="font-size:60px;"></i>
+        <div style="text-align:center;">UI/UX<br><small style="font-size:0.7rem;opacity:0.7;">( 1 Year )</small></div>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-server" style="font-size:60px;"></i>
+        <div style="text-align:center;">Server MC<br><small style="font-size:0.7rem;opacity:0.7;">( 7 Month )</small></div>
+      </div>
     </div>
-
-    <div class="skill-item">
-      <i class="fab fa-js" style="font-size:60px;"></i>
-      <div style="text-align:center;">JavaScript<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
-    </div>
-
-    <div class="skill-item">
-      <i class="fab fa-java" style="font-size:60px;"></i>
-      <div style="text-align:center;">Java (MC)<br><small style="font-size:0.7rem;opacity:0.7;">( 2 Month )</small></div>
-    </div>
-
-    <div class="skill-item">
-      <i class="fas fa-paint-brush" style="font-size:60px;"></i>
-      <div style="text-align:center;">UI/UX<br><small style="font-size:0.7rem;opacity:0.7;">( 1 Year )</small></div>
-    </div>
-
-    <div class="skill-item">
-      <i class="fas fa-server" style="font-size:60px;"></i>
-      <div style="text-align:center;">Server MC<br><small style="font-size:0.7rem;opacity:0.7;">( 7 Month )</small></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- PROJECTS -->
   <section id="projects" class="section">
     <h2 class="section-title">Dự án</h2>
     <div class="projects-grid" id="projectContainer"></div>
   </section>
+
   <!-- CONTACT -->
   <section id="contact" class="contact section">
     <h2 class="section-title">Liên hệ</h2>
@@ -364,7 +357,7 @@
   <!-- MODAL CHI TIẾT DỰ ÁN -->
   <div id="projectModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close">×</span>
       <div id="modalMedia" class="modal-media"></div>
       <div class="modal-body">
         <h2 id="modalTitle" class="modal-title"></h2>
@@ -376,47 +369,47 @@
   </div>
   
   <footer>
-&copy; 2025 TheCheemsVN - <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="Vietnam" style="width:20px;height:14px;">
+    © 2025 TheCheemsVN - <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="Vietnam" style="width:20px;height:14px;">
   </footer>
+
   <!-- NÚT ÂM THANH -->
   <div class="sound-control" id="soundToggle">
     <i class="fas fa-volume-up"></i>
   </div>
-  <!-- AUDIO -->
   <audio id="bgm" loop>
     <source src="background.mp3" type="audio/mpeg">
   </audio>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    // === CẤU HÌNH CHỈNH 1 DÒNG ===
+    // === CẤU HÌNH ===
     const CONFIG = {
       theme: "green",
       video: { blur: 1, brightness: 1 },
       sound: { autoPlay: true, volume: 0.5 }
     };
-    // ===============================
+
     document.body.setAttribute('data-theme', CONFIG.theme);
     document.getElementById('bg-video').style.filter = `blur(${CONFIG.video.blur}px) brightness(${CONFIG.video.brightness})`;
+
     particlesJS("particles-js", {
       particles: { number: { value: 80 }, color: { value: "#00ff99" }, shape: { type: "circle" }, opacity: { value: 0.3 }, size: { value: 3 }, line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, move: { speed: 1 } },
       interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
     });
+
     window.addEventListener('scroll', () => {
       document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // === ANTI-INSPECT + ANTI-SAVE ===
+    // === ANTI-INSPECT ===
     const antiInspect = document.getElementById('antiInspect');
     let devtoolsOpen = false;
     let threshold = 160;
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-          (e.ctrlKey && e.key === 'u') || 
-          (e.ctrlKey && e.key === 's')) {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
         e.preventDefault();
         showAntiInspect();
       }
@@ -427,23 +420,10 @@
     document.addEventListener('dragstart', e => e.preventDefault());
 
     setInterval(() => {
-      if (window.outerHeight - window.innerHeight > threshold || 
-          window.outerWidth - window.innerWidth > threshold) {
-        if (!devtoolsOpen) {
-          devtoolsOpen = true;
-          showAntiInspect();
-        }
-      } else {
-        devtoolsOpen = false;
-      }
+      if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
+        if (!devtoolsOpen) { devtoolsOpen = true; showAntiInspect(); }
+      } else { devtoolsOpen = false; }
     }, 500);
-
-    window.addEventListener('beforeunload', (e) => {
-      if (e.ctrlKey) return;
-      const msg = "Trang web được bảo vệ. Không thể lưu.";
-      e.returnValue = msg;
-      return msg;
-    });
 
     function showAntiInspect() {
       antiInspect.classList.add('show');
@@ -454,14 +434,14 @@
       }, 3000);
     }
 
-    // MODAL
+    // === MODAL ===
     const modal = document.getElementById('projectModal');
     const closeModal = document.querySelector('.close');
     closeModal.onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; }
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.style.display = 'none'; });
 
-    // Load projects
+    // === LOAD PROJECTS ===
     const projectContainer = document.getElementById('projectContainer');
     fetch('projects.json')
       .then(r => { if (!r.ok) throw new Error('Không tìm thấy projects.json'); return r.json(); })
@@ -470,7 +450,7 @@
           projectContainer.innerHTML = '<p style="color: var(--accent); text-align: center;">Chưa có dự án nào.</p>';
           return;
         }
-        projects.forEach((p, index) => {
+        projects.forEach(p => {
           const img = new Image();
           const path = `assets/img/${p.image}`;
           img.onload = () => {
@@ -480,19 +460,20 @@
               <div class="project-img"><img src="${path}" alt="${p.title}"></div>
               <div class="project-info">
                 <h3>${p.title}</h3>
-                <p>${p.desc}</p>
                 <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
               </div>
             `;
-            card.onclick = () => showProjectModal(p, path, index);
+            card.onclick = () => showProjectModal(p, path);
             projectContainer.appendChild(card);
           };
           img.onerror = () => {
             const card = document.createElement('div');
             card.className = 'project-card';
-            card.innerHTML = `<div class="project-img" style="background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;font-size:0.9rem;">[Ảnh lỗi]</div>
-              <div class="project-info"><h3>${p.title}</h3><p>${p.desc}</p><div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>`;
-            card.onclick = () => showProjectModal(p, '', index);
+            card.innerHTML = `
+              <div class="project-img" style="background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;height:500px;font-size:0.9rem;">[Ảnh lỗi]</div>
+              <div class="project-info"><h3>${p.title}</h3><div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>
+            `;
+            card.onclick = () => showProjectModal(p, '');
             projectContainer.appendChild(card);
           };
           img.src = path;
@@ -502,62 +483,52 @@
         projectContainer.innerHTML = `<p style="color: var(--accent); text-align: center;">Lỗi: ${err.message}</p>`;
       });
 
-    function showProjectModal(project, imgPath, index) {
+    function showProjectModal(project, imgPath) {
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalDesc').textContent = project.desc;
-      
+
       const mediaContainer = document.getElementById('modalMedia');
-      const hasVideo = project.video && project.video !== "";
-      if (hasVideo) {
-        const videoPath = `assets/vid/${project.video}`;
-        mediaContainer.innerHTML = `<video autoplay muted loop playsinline controls>
-          <source src="${videoPath}" type="video/mp4">
-          <img src="${imgPath || ''}" alt="${project.title}" style="width:100%;height:100%;object-fit:cover;">
-        </video>`;
-      } else {
-        mediaContainer.innerHTML = imgPath ? `<img src="${imgPath}" alt="${project.title}">` : 
-          `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;">Không có media</div>`;
-      }
-      
+      mediaContainer.innerHTML = imgPath 
+        ? `<img src="${imgPath}" alt="${project.title}">` 
+        : `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;">Không có ảnh</div>`;
+
       const linksContainer = document.getElementById('modalLinks');
-      if (project.links && project.links.length > 0) {
-        linksContainer.innerHTML = project.links.map(link => 
-          `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`
-        ).join('');
-      } else {
-        linksContainer.innerHTML = '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
-      }
-      
+      linksContainer.innerHTML = project.links && project.links.length > 0
+        ? project.links.map(link => `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
+        : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
+
       const techContainer = document.getElementById('modalTech');
       techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-      
-      modal.style.display = 'block';
+
+      modal.style.display = 'flex';
     }
 
-    // Âm thanh
+    // === ÂM THANH ===
     const audio = document.getElementById('bgm');
     const toggle = document.getElementById('soundToggle');
     let isPlaying = false;
     audio.volume = CONFIG.sound.volume;
+
     const playMusic = () => {
       audio.play().then(() => {
         isPlaying = true;
         toggle.innerHTML = '<i class="fas fa-volume-up"></i>';
       }).catch(() => {});
     };
+
     if (CONFIG.sound.autoPlay) {
-      window.addEventListener('load', () => setTimeout(playMusic, 500));
       const unlock = () => { if (!isPlaying) playMusic(); document.body.removeEventListener('click', unlock); document.body.removeEventListener('touchstart', unlock); };
       document.body.addEventListener('click', unlock);
       document.body.addEventListener('touchstart', unlock);
     }
+
     toggle.addEventListener('click', () => {
       if (isPlaying) { audio.pause(); toggle.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
       else { playMusic(); }
       isPlaying = !isPlaying;
     });
 
-    // EmailJS
+    // === EMAILJS ===
     emailjs.init("ze_nGnqXTNdn3uf4u");
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -577,9 +548,7 @@
           console.error('EmailJS error:', error);
         });
     });
+    // === Log test ===
   </script>
 </body>
 </html>
-
-//============================== Update log ==============================
-// v1.0.0 - Initial release with video background, particle effects, project modals, sound control, and anti-inspect features.
