@@ -7,9 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
+    /* === CẤU HÌNH CHỈNH 1 DÒNG === */
     :root {
-      --theme: "green";
+      --theme: "green"; /* "green" | "gray" | "darkgray" */
     }
+    /* MÀU THEO CHỦ ĐỀ */
     [data-theme="green"] {
       --accent: #00ff99;
       --text: #ffffff;
@@ -50,14 +52,14 @@
       -ms-user-select: none;
       user-select: none;
     }
+    /* VIDEO NỀN */
     #bg-video {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       z-index: -2;
-      filter: blur(10px) brightness(0.5);
-      will-change: auto;
+      filter: blur(10px) brightness(5);
     }
     #video-overlay {
       position: fixed;
@@ -67,10 +69,12 @@
       backdrop-filter: blur(0.5px);
       z-index: -1;
     }
-    #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; opacity: 0.3; pointer-events: none; }
+    #particles-js { position: fixed; width: 100%; height: 100%; z-index: 0; opacity: 0.3; }
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg2); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    /* Nav */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
       z-index: 1000; transition: all 0.3s ease; backdrop-filter: blur(10px);
@@ -86,6 +90,7 @@
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
+    /* Hero */
     .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; z-index: 1; }
     .hero h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .typing-container {
@@ -107,9 +112,11 @@
     .hero p { max-width: 600px; color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; }
     .btn { padding: 12px 32px; background: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; border-radius: 50px; transition: all 0.4s ease; text-decoration: none; display: inline-block; cursor: pointer; }
     .btn:hover { background: var(--accent); color: var(--bg); transform: translateY(-3px); box-shadow: 0 0 20px rgba(0,255,153,0.4); }
+    /* Section */
     section { padding: 100px 5%; position: relative; z-index: 1; }
     .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; position: relative; color: var(--text); }
     .section-title::after { content: ''; width: 80px; height: 4px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+    /* === ANIMATION KHI SCROLL === */
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(30px);
@@ -119,6 +126,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* ABOUT */
     .about {
       display: flex;
       align-items: center;
@@ -135,12 +143,13 @@
       overflow: hidden;
       border: 2px solid var(--accent);
       box-shadow: 0 0 30px rgba(0,255,153,0.3);
-      transition: transform 0.5s ease;
+      transition: all 0.5s ease;
       flex-shrink: 0;
       cursor: pointer;
     }
     .about-img:hover {
       transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(0,255,153,0.5);
     }
     .about-img img { width: 100%; height: 100%; object-fit: cover; }
     .about-text {
@@ -160,6 +169,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    /* Skills - ĐÃ FIX: CENTER ICON + TEXT, PADDING ĐỀU */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -173,7 +183,7 @@
       padding: 1.8rem 1rem;
       background: var(--card);
       border-radius: 16px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transition: all 0.4s ease;
       border: 1px solid rgba(0,255,153,0.1);
       cursor: pointer;
       width: 100%;
@@ -188,7 +198,7 @@
       box-shadow: 0 10px 30px rgba(0,255,153,0.2);
       border-color: var(--accent);
     }
-    .skill-item i, .skill-item img {
+    .skill-item i, .skill-item img, .skill-item .fab-roblox {
       font-size: 3.2rem;
       color: var(--accent);
       margin-bottom: 0.8rem;
@@ -198,10 +208,11 @@
       width: 60px; height: 60px; object-fit: contain;
       filter: brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);
     }
+    /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
     .project-card {
       background: var(--card); border-radius: 16px; overflow: hidden;
-      transition: transform 0.5s ease, box-shadow 0.5s ease; border: 1px solid rgba(0,255,153,0.1); cursor: pointer;
+      transition: all 0.5s ease; border: 1px solid rgba(0,255,153,0.1); cursor: pointer;
       position: relative;
     }
     .project-card:hover {
@@ -223,6 +234,7 @@
     .project-info h3 { margin-bottom: 0.5rem; color: var(--accent); }
     .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+    /* MODAL */
     .modal {
       display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); justify-content: center; align-items: center;
@@ -253,6 +265,7 @@
       background: var(--accent);
       color: var(--bg);
       transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(0, 255, 153, 0.7);
     }
     .modal-media {
       width: 100%; height: 300px;
@@ -279,10 +292,12 @@
     }
     .modal-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .modal-tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; }
+    /* Contact */
     .contact form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
     .contact input, .contact textarea { padding: 1rem; background: var(--card); border: 1px solid rgba(0,255,153,0.2); color: var(--text); border-radius: 8px; font-family: inherit; }
     .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(0,255,153,0.3); }
     .success { color: var(--accent); text-align: center; margin-top: 1rem; font-weight: 600; }
+    /* Sound Control */
     .sound-control {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000;
       background: rgba(31, 31, 31, 0.8); backdrop-filter: blur(10px);
@@ -292,6 +307,7 @@
     }
     .sound-control:hover { background: var(--accent); color: var(--bg); transform: scale(1.1); }
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.9rem; position: relative; z-index: 1; }
+    /* SMOOTH SCROLL */
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     @media (max-width: 768px) {
       .hero h1 { font-size: 3rem; }
@@ -305,6 +321,7 @@
       .skills-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.5rem; }
       .skill-item { padding: 1.5rem 0.8rem; min-height: 120px; }
     }
+    /* ANTI-INSPECT WARNING */
     #antiInspect {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
       background: #000; color: #00ff99; font-family: monospace; display: none; flex-direction: column;
@@ -317,15 +334,17 @@
   </style>
 </head>
 <body data-theme="green" oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+  <!-- ANTI-INSPECT WARNING -->
   <div id="antiInspect">
     <h1>Không cho phép Inspect</h1>
     <p>Trang web này đã được bảo vệ. Vui lòng không sử dụng F12, chuột phải hoặc các công cụ dev.</p>
     <p>Truy cập bình thường để trải nghiệm tốt nhất.</p>
-    <button class="btn" onclick="location.reload()">Tải lại trang</button>
+    <button class="btn shine-effect" onclick="location.reload()">Tải lại trang</button>
   </div>
   <img id="bg-video" src="assets/img/background.gif" alt="background" />
   <div id="video-overlay"></div>
   <div id="particles-js"></div>
+  <!-- NAV -->
   <nav class="animate-on-scroll">
     <div class="logo">CheemsRoDev</div>
     <div class="nav-links">
@@ -335,18 +354,20 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
+  <!-- HERO -->
   <section class="hero animate-on-scroll">
     <h1>TheCheemsVN</h1>
     <div class="typing-container">
       <span class="typing"></span>
     </div>
     <p>Chuyên làm GUI, UI, web, Minecraft server & Roblox game.</p>
-    <a href="#contact" class="btn">Liên hệ ngay</a>
+    <a href="#contact" class="btn shine-effect">Liên hệ ngay</a>
   </section>
+  <!-- ABOUT -->
   <section id="about" class="about section">
     <h2 class="section-title animate-on-scroll">Về tôi</h2>
     <div class="about">
-      <div class="about-img animate-on-scroll">
+      <div class="about-img shine-effect animate-on-scroll">
         <img src="assets/img/avatar.png" alt="TheCheemsVN">
       </div>
       <div class="about-text animate-on-scroll">
@@ -355,124 +376,129 @@
       </div>
     </div>
   </section>
+  <!-- SKILLS -->
   <section id="skills" class="section">
     <h2 class="section-title animate-on-scroll">Kỹ năng</h2>
     <div class="skills-grid">
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" alt="Roblox Studio">
         <div>Ro Studio<br><small>( 6 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-html5"></i>
         <div>HTML<br><small>( 2 Tuần )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-css3-alt"></i>
         <div>CSS<br><small>( 2 Tuần )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-code"></i>
         <div>C++<br><small>( 4 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-python"></i>
         <div>Python<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-scroll"></i>
         <div>Luau/Lua<br><small>( 6 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-js"></i>
         <div>JavaScript<br><small>( 2 Tháng )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-copyright"></i>
         <div>C#<br><small>( 1 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-node-js"></i>
         <div>Node.js<br><small>( 1 Tháng )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-java"></i>
         <div>Java (MC)<br><small>( 7 Tháng )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-paint-brush"></i>
         <div>UI/UX<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-server"></i>
         <div>Server MC<br><small>( 7 Tháng )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-puzzle-piece"></i>
         <div>Scratch<br><small>( 8 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <!-- Danh sách kỹ năng mới -->
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-github"></i>
         <div>GitHub<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-microchip"></i>
         <div>Electronic Engineer<br><small>( 5 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-desktop"></i>
         <div>PC Assembly<br><small>( 4 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-terminal"></i>
         <div>CMD / Terminal<br><small>( 4 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-bug"></i>
         <div>Debugging<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-mobile-alt"></i>
         <div>PC → Mobile (MobileSupport)<br><small>( 4 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-cubes"></i>
         <div>Module Development<br><small>( 5 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-tools"></i>
         <div>Build Systems<br><small>( 5 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-project-diagram"></i>
         <div>3D Modeling<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-shield-alt"></i>
         <div>DDOS Mitigation<br><small>( 3 Năm )</small></div>
       </div>
-      <div class="skill-item animate-on-scroll">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-cube"></i>
         <div>Command Block<br><small>( Minecraft - 4 Năm )</small></div>
       </div>
     </div>
   </section>
+  <!-- PROJECTS -->
   <section id="projects" class="section">
     <h2 class="section-title animate-on-scroll">Dự án</h2>
     <div class="projects-grid" id="projectContainer"></div>
   </section>
+  <!-- CONTACT -->
   <section id="contact" class="contact section">
     <h2 class="section-title animate-on-scroll">Liên hệ</h2>
     <form id="contactForm" class="animate-on-scroll">
       <input type="text" id="name" placeholder="Tên của bạn" required>
       <input type="email" id="email" placeholder="Email của bạn" required>
       <textarea id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
-      <button type="submit" class="btn">Gửi tin nhắn</button>
+      <button type="submit" class="btn shine-effect">Gửi tin nhắn</button>
     </form>
     <p class="success animate-on-scroll" id="status"></p>
   </section>
+  <!-- MODAL CHI TIẾT DỰ ÁN -->
   <div id="projectModal" class="modal">
     <div class="modal-content">
-      <span class="close">×</span>
+      <span class="close shine-effect">×</span>
       <div id="modalMedia" class="modal-media"></div>
       <div class="modal-body">
         <h2 id="modalTitle" class="modal-title"></h2>
@@ -485,94 +511,64 @@
   <footer class="animate-on-scroll">
     © 2025 TheCheemsVN - <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="Vietnam" style="width:20px;height:14px;">
   </footer>
-  <div class="sound-control animate-on-scroll" id="soundToggle">
+  <!-- NÚT ÂM THANH -->
+  <div class="sound-control shine-effect animate-on-scroll" id="soundToggle">
     <i class="fas fa-volume-up"></i>
   </div>
   <audio id="bgm" loop>
     <source src="background.mp3" type="audio/mpeg">
   </audio>
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     const CONFIG = { theme: "green", video: { blur: 1, brightness: 1 }, sound: { autoPlay: true, volume: 0.5 } };
     document.body.setAttribute('data-theme', CONFIG.theme);
     document.getElementById('bg-video').style.filter = `blur(${CONFIG.video.blur}px) brightness(${CONFIG.video.brightness})`;
-    
-    let particlesLoaded = false;
-    function loadParticles() {
-      if (particlesLoaded) return;
-      particlesLoaded = true;
-      particlesJS("particles-js", {
-        particles: { 
-          number: { value: window.innerWidth < 768 ? 40 : 60 }, 
-          color: { value: "#00ff99" }, 
-          shape: { type: "circle" }, 
-          opacity: { value: 0.3 }, 
-          size: { value: 3 }, 
-          line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, 
-          move: { speed: 1, enable: true }
-        },
-        interactivity: { events: { onhover: { enable: false } } }
-      });
-    }
-    
-    let scrollTimer;
+    particlesJS("particles-js", {
+      particles: { number: { value: 80 }, color: { value: "#00ff99" }, shape: { type: "circle" }, opacity: { value: 0.3 }, size: { value: 3 }, line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, move: { speed: 1 } },
+      interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
+    });
     window.addEventListener('scroll', () => {
       document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(loadParticles, 500);
-    }, { passive: true });
-    
+    });
+
+    // === SCROLL ANIMATION ===
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -50px 0px"
     };
-    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('is-visible');
         }
       });
     }, observerOptions);
-    
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
       observer.observe(el);
     });
-    
+
+    // === ANTI-INSPECT ===
     const antiInspect = document.getElementById('antiInspect');
     let devtoolsOpen = false;
     let threshold = 160;
-    
     document.addEventListener('keydown', (e) => {
       if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
         e.preventDefault();
         showAntiInspect();
       }
     });
-    
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('selectstart', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
-    
-    let checkInterval;
-    function startDevtoolsCheck() {
-      if (checkInterval) return;
-      checkInterval = setInterval(() => {
-        if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
-          if (!devtoolsOpen) { 
-            devtoolsOpen = true; 
-            showAntiInspect(); 
-          }
-        } else { 
-          devtoolsOpen = false; 
-        }
-      }, 1000);
-    }
-    
-    setTimeout(startDevtoolsCheck, 2000);
-    
+    setInterval(() => {
+      if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
+        if (!devtoolsOpen) { devtoolsOpen = true; showAntiInspect(); }
+      } else { devtoolsOpen = false; }
+    }, 500);
     function showAntiInspect() {
       antiInspect.classList.add('show');
       document.body.style.overflow = 'hidden';
@@ -581,146 +577,110 @@
         document.head.innerHTML = '';
       }, 3000);
     }
-    
+
+    // === MODAL ===
     const modal = document.getElementById('projectModal');
     const closeModal = document.querySelector('.close');
     closeModal.onclick = () => modal.style.display = 'none';
     window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') modal.style.display = 'none'; });
-    
+
+    // === LOAD PROJECTS ===
     const projectContainer = document.getElementById('projectContainer');
-    let projectsData = [];
-    
     fetch('projects.json')
       .then(r => { if (!r.ok) throw new Error('Không tìm thấy projects.json'); return r.json(); })
       .then(projects => {
-        projectsData = projects;
         if (!Array.isArray(projects) || projects.length === 0) {
           projectContainer.innerHTML = '<p style="color: var(--accent); text-align: center;">Chưa có dự án nào.</p>';
           return;
         }
-        
-        const fragment = document.createDocumentFragment();
-        let loadedCount = 0;
-        
-        projects.forEach((p, idx) => {
+        projects.forEach(p => {
           const img = new Image();
           const path = `assets/img/${p.image}`;
-          
           img.onload = () => {
             const card = document.createElement('div');
-            card.className = 'project-card animate-on-scroll';
+            card.className = 'project-card shine-effect animate-on-scroll';
             card.innerHTML = `
-              <div class="project-img"><img src="${path}" alt="${p.title}" loading="lazy"></div>
+              <div class="project-img"><img src="${path}" alt="${p.title}"></div>
               <div class="project-info">
                 <h3>${p.title}</h3>
                 <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
               </div>
             `;
-            card.onclick = () => showProjectModal(idx);
-            fragment.appendChild(card);
-            
-            loadedCount++;
-            if (loadedCount === projects.length) {
-              projectContainer.appendChild(fragment);
-              projectContainer.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-            }
+            card.onclick = () => showProjectModal(p, path);
+            projectContainer.appendChild(card);
+            observer.observe(card);
           };
-          
           img.onerror = () => {
             const card = document.createElement('div');
-            card.className = 'project-card animate-on-scroll';
+            card.className = 'project-card shine-effect animate-on-scroll';
             card.innerHTML = `
               <div class="project-img" style="background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;height:500px;font-size:0.9rem;">[Ảnh lỗi]</div>
               <div class="project-info"><h3>${p.title}</h3><div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>
             `;
-            card.onclick = () => showProjectModal(idx);
-            fragment.appendChild(card);
-            
-            loadedCount++;
-            if (loadedCount === projects.length) {
-              projectContainer.appendChild(fragment);
-              projectContainer.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-            }
+            card.onclick = () => showProjectModal(p, '');
+            projectContainer.appendChild(card);
+            observer.observe(card);
           };
-          
           img.src = path;
         });
       })
       .catch(err => {
         projectContainer.innerHTML = `<p style="color: var(--accent); text-align: center;">Lỗi: ${err.message}</p>`;
       });
-    
-    function showProjectModal(idx) {
-      const project = projectsData[idx];
-      if (!project) return;
-      
+    function showProjectModal(project, imgPath) {
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalDesc').textContent = project.desc;
-      
       const mediaContainer = document.getElementById('modalMedia');
       if (project.videoLink && project.videoLink.includes('embed')) {
-        mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+        mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      } else if (imgPath) {
+        mediaContainer.innerHTML = `<img src="${imgPath}" alt="${project.title}">`;
       } else {
-        const imgPath = `assets/img/${project.image}`;
-        mediaContainer.innerHTML = `<img src="${imgPath}" alt="${project.title}" loading="lazy">`;
+        mediaContainer.innerHTML = `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;font-style:italic;">Không có media</div>`;
       }
-      
       const linksContainer = document.getElementById('modalLinks');
       linksContainer.innerHTML = project.links && project.links.length > 0
-        ? project.links.map(link => `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
+        ? project.links.map(link => `<a href="${link.url}" class="modal-link shine-effect" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
         : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
-      
       const techContainer = document.getElementById('modalTech');
-      techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-      
+      techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag shine-effect">${t}</span>`).join('');
       modal.style.display = 'flex';
     }
-    
+
+    // === ÂM THANH ===
     const audio = document.getElementById('bgm');
     const toggle = document.getElementById('soundToggle');
     let isPlaying = false;
     audio.volume = CONFIG.sound.volume;
-    
     const playMusic = () => {
       audio.play().then(() => {
         isPlaying = true;
         toggle.innerHTML = '<i class="fas fa-volume-up"></i>';
       }).catch(() => {});
     };
-    
     if (CONFIG.sound.autoPlay) {
-      const unlock = () => { 
-        if (!isPlaying) playMusic(); 
-        document.body.removeEventListener('click', unlock); 
-        document.body.removeEventListener('touchstart', unlock); 
-      };
-      document.body.addEventListener('click', unlock, { once: true });
-      document.body.addEventListener('touchstart', unlock, { once: true });
+      const unlock = () => { if (!isPlaying) playMusic(); document.body.removeEventListener('click', unlock); document.body.removeEventListener('touchstart', unlock); };
+      document.body.addEventListener('click', unlock);
+      document.body.addEventListener('touchstart', unlock);
     }
-    
     toggle.addEventListener('click', () => {
-      if (isPlaying) { 
-        audio.pause(); 
-        toggle.innerHTML = '<i class="fas fa-volume-mute"></i>'; 
-      } else { 
-        playMusic(); 
-      }
+      if (isPlaying) { audio.pause(); toggle.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
+      else { playMusic(); }
       isPlaying = !isPlaying;
     });
-    
+
+    // === EMAILJS ===
     emailjs.init("ze_nGnqXTNdn3uf4u");
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const status = document.getElementById('status');
       status.textContent = "Đang gửi...";
-      
       const params = {
         from_name: document.getElementById('name').value,
         from_email: document.getElementById('email').value,
         message: document.getElementById('message').value
       };
-      
       emailjs.send('service_kqth8v8', 'template_r8x7qxl', params)
         .then(() => {
           status.innerHTML = "Gửi thành công! Mình sẽ trả lời sớm. <i class='fas fa-check-circle'></i>";
@@ -730,11 +690,13 @@
           console.error('EmailJS error:', error);
         });
     });
-    
+
+    // === TYPING EFFECT DỰA TRÊN SKILLS (VÒNG LẶP VÔ HẠN) ===
     document.addEventListener("DOMContentLoaded", () => {
       const typingElement = document.querySelector(".typing");
       if (!typingElement) return;
-      
+
+      // Lấy tên skill từ .skill-item > div (bỏ phần <small>)
       const skills = Array.from(document.querySelectorAll(".skill-item div"))
         .map(el => {
           const lines = el.innerText.split("\n");
@@ -742,35 +704,39 @@
           return name === "Ro Studio" ? "Roblox Developer" : name;
         })
         .filter(Boolean);
-      
+
       if (skills.length === 0) {
         typingElement.textContent = "i am Developer";
         return;
       }
-      
+
       let skillIndex = 0;
       let charIndex = 0;
       let isDeleting = false;
       let isPaused = false;
+
       const typingSpeed = 80;
       const deletingSpeed = 40;
       const pauseAfterType = 1500;
       const pauseAfterDelete = 300;
-      
+
       function typeWriter() {
         const current = "i am " + skills[skillIndex];
-        
+
         if (isPaused) {
+          // Đang pause → không làm gì, chờ hết pause
           requestAnimationFrame(typeWriter);
           return;
         }
-        
+
         if (!isDeleting && charIndex <= current.length) {
+          // ĐANG GÕ
           typingElement.textContent = current.substring(0, charIndex);
           charIndex++;
           setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
         } 
         else if (!isDeleting && charIndex > current.length) {
+          // GÕ XONG → PAUSE
           isPaused = true;
           setTimeout(() => {
             isPaused = false;
@@ -779,11 +745,13 @@
           }, pauseAfterType);
         } 
         else if (isDeleting && charIndex > 0) {
+          // ĐANG XÓA
           typingElement.textContent = current.substring(0, charIndex);
           charIndex--;
           setTimeout(() => requestAnimationFrame(typeWriter), deletingSpeed);
         } 
         else if (isDeleting && charIndex === 0) {
+          // XÓA XONG → CHUYỂN SKILL TIẾP
           isDeleting = false;
           skillIndex = (skillIndex + 1) % skills.length;
           isPaused = true;
@@ -793,7 +761,8 @@
           }, pauseAfterDelete);
         }
       }
-      
+
+      // Bắt đầu sau 1s
       setTimeout(() => requestAnimationFrame(typeWriter), 1000);
     });
   </script>
