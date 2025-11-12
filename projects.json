@@ -3,11 +3,24 @@
     "title": "Roblox Construction Models",
     "desc": "Hệ thống gió, cử động, animation mượt mà và loop.",
     "image": "1.jpg",
-    "video": "1.mp4",
+    "video": "",
     "tags": ["Roblox", "Luau", "Models/Animation"],
     "links": [
       {
-        "label": "Video ( Not Available )",
+        "label": "Click to open Video",
+        "url": "https://imgpile.com/p/0VJLnv0"
+      }
+    ]
+  },
+  {
+    "title": "Test Project",
+    "desc": "This is Description for Test Project",
+    "image": "2.jpg",
+    "video": "",
+    "tags": ["Test"],
+    "links": [
+      {
+        "label": "Test",
         "url": ""
       }
     ]

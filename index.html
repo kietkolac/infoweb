@@ -124,7 +124,7 @@
       flex-shrink: 0;
     }
     .about-img:hover {
-      transform: scale(1.08) rotate(3deg);
+      transform: scale(1.08);
       box-shadow: 0 0 40px rgba(0,255,153,0.5);
     }
     .about-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -193,7 +193,30 @@
       max-height: 90vh; overflow-y: auto; position: relative;
       border: 2px solid var(--accent);
     }
-    .close { position: absolute; right: 20px; top: 20px; font-size: 2.5rem; color: var(--accent); cursor: pointer; z-index: 10; }
+    .close {
+  position: absolute;
+  right: 20px; top: 20px;
+  font-size: 2.5rem;
+  color: var(--accent);
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  width: 50px; height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 255, 153, 0.4);
+  transition: all 0.3s ease;
+}
+
+.close:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(0, 255, 153, 0.7);
+}
     .modal-media { 
       width: 100%; height: 300px; 
       border-radius: 20px 20px 0 0; position: relative; overflow: hidden;
@@ -484,24 +507,30 @@
       });
 
     function showProjectModal(project, imgPath) {
-      document.getElementById('modalTitle').textContent = project.title;
-      document.getElementById('modalDesc').textContent = project.desc;
+  document.getElementById('modalTitle').textContent = project.title;
+  document.getElementById('modalDesc').textContent = project.desc;
 
-      const mediaContainer = document.getElementById('modalMedia');
-      mediaContainer.innerHTML = imgPath 
-        ? `<img src="${imgPath}" alt="${project.title}">` 
-        : `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;">Không có ảnh</div>`;
+  const mediaContainer = document.getElementById('modalMedia');
 
-      const linksContainer = document.getElementById('modalLinks');
-      linksContainer.innerHTML = project.links && project.links.length > 0
-        ? project.links.map(link => `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
-        : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
+  if (project.videoLink && project.videoLink.includes('embed')) {
+    // Ưu tiên video YouTube
+    mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  } else if (imgPath) {
+    mediaContainer.innerHTML = `<img src="${imgPath}" alt="${project.title}">`;
+  } else {
+    mediaContainer.innerHTML = `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;font-style:italic;">Không có media</div>`;
+  }
 
-      const techContainer = document.getElementById('modalTech');
-      techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  const linksContainer = document.getElementById('modalLinks');
+  linksContainer.innerHTML = project.links && project.links.length > 0
+    ? project.links.map(link => `<a href="${link.url}" class="modal-link" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
+    : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
 
-      modal.style.display = 'flex';
-    }
+  const techContainer = document.getElementById('modalTech');
+  techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+  modal.style.display = 'flex';
+}
 
     // === ÂM THANH ===
     const audio = document.getElementById('bgm');
