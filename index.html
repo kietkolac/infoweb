@@ -54,13 +54,14 @@
     }
     /* VIDEO NỀN */
     #bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      filter: blur(2px) brightness(0.8);
-    }
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; /* hoặc contain */
+  z-index: -2;
+  filter: blur(2px) brightness(0.8); /* vẫn áp dụng được */
+}
+
     #video-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -272,10 +273,7 @@
     <button class="btn" onclick="location.reload()">Tải lại trang</button>
   </div>
 
-  <!-- VIDEO NỀN -->
-  <video id="bg-video" autoplay muted loop playsinline>
-    <source src="background.mp4" type="video/mp4">
-  </video>
+  <img id="bg-video" src="assets/img/background.gif" alt="background" />
   <div id="video-overlay"></div>
   <div id="particles-js"></div>
   <!-- NAV -->
