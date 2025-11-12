@@ -74,42 +74,6 @@
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg2); }
     ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-
-    /* SHINE EFFECT - ĐÃ FIX ĐẸP, DÀI, MỜ DẦN, LẶP SAU 1.5s */
-    .shine-effect {
-      position: relative;
-      overflow: hidden;
-    }
-    .shine-effect::before {
-      content: '';
-      position: absolute;
-      top: -300%; left: -300%;
-      width: 600%; height: 600%;
-      background: linear-gradient(
-        135deg,
-        transparent 0%,
-        transparent 35%,
-        rgba(0, 255, 153, 0.35) 45%,
-        rgba(0, 255, 153, 0.6) 50%,
-        rgba(0, 255, 153, 0.35) 55%,
-        transparent 65%,
-        transparent 100%
-      );
-      transform: translateX(-100%) rotate(45deg);
-      transition: none;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0;
-    }
-    .shine-effect:hover::before {
-      animation: shine-loop 1.5s ease-in-out infinite;
-      opacity: 1;
-    }
-    @keyframes shine-loop {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-
     /* Nav */
     nav {
       position: fixed; top: 0; width: 100%; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
@@ -126,7 +90,6 @@
     }
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
-
     /* Hero */
     .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; position: relative; z-index: 1; }
     .hero h1 { font-size: 4.5rem; font-weight: 700; margin-bottom: 1rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -136,11 +99,21 @@
     .hero p { max-width: 600px; color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; }
     .btn { padding: 12px 32px; background: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; border-radius: 50px; transition: all 0.4s ease; text-decoration: none; display: inline-block; cursor: pointer; }
     .btn:hover { background: var(--accent); color: var(--bg); transform: translateY(-3px); box-shadow: 0 0 20px rgba(0,255,153,0.4); }
-
     /* Section */
     section { padding: 100px 5%; position: relative; z-index: 1; }
     .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; position: relative; color: var(--text); }
     .section-title::after { content: ''; width: 80px; height: 4px; background: var(--accent); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+
+    /* === ANIMATION KHI SCROLL === */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.25s ease-out;
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ABOUT */
     .about {
@@ -185,24 +158,23 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     /* Skills - ĐÃ FIX: CENTER ICON + TEXT, PADDING ĐỀU */
-    .skills-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-      gap: 2rem; 
-      max-width: 1100px; 
-      margin: 0 auto; 
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
       justify-items: center;
     }
-    .skill-item { 
-      text-align: center; 
-      padding: 1.8rem 1rem; 
-      background: var(--card); 
-      border-radius: 16px; 
-      transition: all 0.4s ease; 
-      border: 1px solid rgba(0,255,153,0.1); 
-      cursor: pointer; 
+    .skill-item {
+      text-align: center;
+      padding: 1.8rem 1rem;
+      background: var(--card);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0,255,153,0.1);
+      cursor: pointer;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -210,49 +182,47 @@
       justify-content: center;
       min-height: 130px;
     }
-    .skill-item:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 10px 30px rgba(0,255,153,0.2); 
-      border-color: var(--accent); 
+    .skill-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,255,153,0.2);
+      border-color: var(--accent);
     }
-    .skill-item i, .skill-item img, .skill-item .fab-roblox { 
-      font-size: 3.2rem; 
-      color: var(--accent); 
-      margin-bottom: 0.8rem; 
+    .skill-item i, .skill-item img, .skill-item .fab-roblox {
+      font-size: 3.2rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
       display: block;
     }
     .skill-item img {
       width: 60px; height: 60px; object-fit: contain;
       filter: brightness(0) saturate(100%) invert(68%) sepia(83%) saturate(600%) hue-rotate(95deg) brightness(100%) contrast(90%);
     }
-
     /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    .project-card { 
-      background: var(--card); border-radius: 16px; overflow: hidden; 
-      transition: all 0.5s ease; border: 1px solid rgba(0,255,153,0.1); cursor: pointer; 
+    .project-card {
+      background: var(--card); border-radius: 16px; overflow: hidden;
+      transition: all 0.5s ease; border: 1px solid rgba(0,255,153,0.1); cursor: pointer;
       position: relative;
     }
-    .project-card:hover { 
-      transform: translateY(-15px); 
-      box-shadow: 0 20px 40px rgba(0,255,153,0.2); 
+    .project-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 40px rgba(0,255,153,0.2);
     }
-    .project-img { 
+    .project-img {
       height: 500px; overflow: hidden; position: relative;
     }
-    .project-img img { 
-      width: 100%; height: 100%; 
-      object-fit: cover; 
-      transition: transform 0.5s ease; 
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
     }
-    .project-card:hover .project-img img { 
-      transform: scale(1.1); 
+    .project-card:hover .project-img img {
+      transform: scale(1.1);
     }
     .project-info { padding: 1.5rem; }
     .project-info h3 { margin-bottom: 0.5rem; color: var(--accent); }
     .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
-
     /* MODAL */
     .modal {
       display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
@@ -286,22 +256,22 @@
       transform: scale(1.1);
       box-shadow: 0 0 25px rgba(0, 255, 153, 0.7);
     }
-    .modal-media { 
-      width: 100%; height: 300px; 
+    .modal-media {
+      width: 100%; height: 300px;
       border-radius: 20px 20px 0 0; position: relative; overflow: hidden;
     }
-    .modal-media img, .modal-media iframe { 
-      width: 100%; height: 100%; 
-      object-fit: cover; 
+    .modal-media img, .modal-media iframe {
+      width: 100%; height: 100%;
+      object-fit: cover;
       border: none;
     }
     .modal-body { padding: 2rem; }
     .modal-title { color: var(--accent); font-size: 2rem; margin-bottom: 1rem; }
     .modal-desc { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.8; }
     .modal-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-    .modal-link { 
-      padding: 10px 20px; background: rgba(0,255,153,0.1); color: var(--accent); 
-      text-decoration: none; border-radius: 25px; font-weight: 500; 
+    .modal-link {
+      padding: 10px 20px; background: rgba(0,255,153,0.1); color: var(--accent);
+      text-decoration: none; border-radius: 25px; font-weight: 500;
       transition: all 0.3s ease; border: 1px solid rgba(0,255,153,0.3);
     }
     .modal-link:hover { background: var(--accent); color: var(--bg); transform: translateY(-2px); }
@@ -311,13 +281,11 @@
     }
     .modal-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; }
     .modal-tag { background: rgba(0,255,153,0.1); color: var(--accent); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; }
-
     /* Contact */
     .contact form { max-width: 600px; margin: 0 auto; display: grid; gap: 1rem; }
     .contact input, .contact textarea { padding: 1rem; background: var(--card); border: 1px solid rgba(0,255,153,0.2); color: var(--text); border-radius: 8px; font-family: inherit; }
     .contact input:focus, .contact textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(0,255,153,0.3); }
     .success { color: var(--accent); text-align: center; margin-top: 1rem; font-weight: 600; }
-
     /* Sound Control */
     .sound-control {
       position: fixed; bottom: 20px; right: 20px; z-index: 1000;
@@ -327,12 +295,9 @@
       box-shadow: 0 0 15px rgba(0, 255, 153, 0.2);
     }
     .sound-control:hover { background: var(--accent); color: var(--bg); transform: scale(1.1); }
-
     footer { text-align: center; padding: 2rem; color: var(--gray); font-size: 0.9rem; position: relative; z-index: 1; }
-
     /* SMOOTH SCROLL */
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
     @media (max-width: 768px) {
       .hero h1 { font-size: 3rem; }
       .typing { font-size: 1.3rem; }
@@ -345,7 +310,6 @@
       .skills-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.5rem; }
       .skill-item { padding: 1.5rem 0.8rem; min-height: 120px; }
     }
-
     /* ANTI-INSPECT WARNING */
     #antiInspect {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;
@@ -366,13 +330,11 @@
     <p>Truy cập bình thường để trải nghiệm tốt nhất.</p>
     <button class="btn shine-effect" onclick="location.reload()">Tải lại trang</button>
   </div>
-
   <img id="bg-video" src="assets/img/background.gif" alt="background" />
   <div id="video-overlay"></div>
   <div id="particles-js"></div>
-
   <!-- NAV -->
-  <nav>
+  <nav class="animate-on-scroll">
     <div class="logo">CheemsRoDev</div>
     <div class="nav-links">
       <a href="#about">About</a>
@@ -381,132 +343,100 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
-
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero animate-on-scroll">
     <h1>TheCheemsVN</h1>
     <div class="typing">Roblox Developer</div>
     <p>Chuyên làm GUI, UI, web, Minecraft server & Roblox game.</p>
     <a href="#contact" class="btn shine-effect">Liên hệ ngay</a>
   </section>
-
   <!-- ABOUT -->
   <section id="about" class="about section">
-    <h2 class="section-title">Về tôi</h2>
+    <h2 class="section-title animate-on-scroll">Về tôi</h2>
     <div class="about">
-      <div class="about-img shine-effect">
+      <div class="about-img shine-effect animate-on-scroll">
         <img src="assets/img/avatar.png" alt="TheCheemsVN">
       </div>
-      <div class="about-text">
+      <div class="about-text animate-on-scroll">
         <h3>Xin chào! Tôi là TheCheemsVN</h3>
         <p>Chuyên gia Roblox Studio từ GUI tới script và đã làm được 6 năm, thỉnh thoảng làm web cho vui (HTML, CSS, JS), còn thiết kế giao diện và làm Java server Minecraft. Đam mê sáng tạo, tối ưu trải nghiệm và… tự hành hạ bằng 1 đống deadline</p>
       </div>
     </div>
   </section>
-
-  <!-- SKILLS - ĐÃ THÊM 13 MỤC MỚI + CŨ -->
+  <!-- SKILLS -->
   <section id="skills" class="section">
-    <h2 class="section-title">Kỹ năng</h2>
+    <h2 class="section-title animate-on-scroll">Kỹ năng</h2>
     <div class="skills-grid">
-      <!-- 1. Ro Studio (giữ nguyên) -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" alt="Roblox Studio">
         <div>Ro Studio<br><small>( 6 Năm )</small></div>
       </div>
-
-      <!-- 2. HTML -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-html5"></i>
         <div>HTML<br><small>( 2 Tháng )</small></div>
       </div>
-
-      <!-- 3. CSS -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-css3-alt"></i>
         <div>CSS<br><small>( 2 Tháng )</small></div>
       </div>
-
-      <!-- 4. C++ -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-code"></i>
         <div>C++<br><small>( 4 Năm )</small></div>
       </div>
-
-      <!-- 5. Python -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-python"></i>
         <div>Python<br><small>( 3 Năm )</small></div>
       </div>
-
-      <!-- 6. Luau/Lua -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-scroll"></i>
         <div>Luau/Lua<br><small>( 6 Năm )</small></div>
       </div>
-
-      <!-- 7. JavaScript -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-js"></i>
         <div>JavaScript<br><small>( 2 Tháng )</small></div>
       </div>
-
-      <!-- 8. C# -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-copyright"></i>
         <div>C#<br><small>( 2 Năm )</small></div>
       </div>
-
-      <!-- 10. Node.js -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-node-js"></i>
         <div>Node.js<br><small>( 1 Tháng )</small></div>
       </div>
-
-      <!-- 11. Java (MC) -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fab fa-java"></i>
         <div>Java (MC)<br><small>( 2 Tháng )</small></div>
       </div>
-
-      <!-- 12. UI/UX -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-paint-brush"></i>
         <div>UI/UX<br><small>( 1 Năm )</small></div>
       </div>
-
-      <!-- 13. Server MC -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-server"></i>
         <div>Server MC<br><small>( 7 Tháng )</small></div>
       </div>
-
-      <!-- 14. Scratch (Cấp 1) -->
-      <div class="skill-item shine-effect">
+      <div class="skill-item shine-effect animate-on-scroll">
         <i class="fas fa-puzzle-piece"></i>
         <div>Scratch<br><small>( 12 Năm )</small></div>
       </div>
-
     </div>
   </section>
-
   <!-- PROJECTS -->
   <section id="projects" class="section">
-    <h2 class="section-title">Dự án</h2>
+    <h2 class="section-title animate-on-scroll">Dự án</h2>
     <div class="projects-grid" id="projectContainer"></div>
   </section>
-
   <!-- CONTACT -->
   <section id="contact" class="contact section">
-    <h2 class="section-title">Liên hệ</h2>
-    <form id="contactForm">
+    <h2 class="section-title animate-on-scroll">Liên hệ</h2>
+    <form id="contactForm" class="animate-on-scroll">
       <input type="text" id="name" placeholder="Tên của bạn" required>
       <input type="email" id="email" placeholder="Email của bạn" required>
       <textarea id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
       <button type="submit" class="btn shine-effect">Gửi tin nhắn</button>
     </form>
-    <p class="success" id="status"></p>
+    <p class="success animate-on-scroll" id="status"></p>
   </section>
-  
   <!-- MODAL CHI TIẾT DỰ ÁN -->
   <div id="projectModal" class="modal">
     <div class="modal-content">
@@ -520,19 +450,16 @@
       </div>
     </div>
   </div>
-  
-  <footer>
+  <footer class="animate-on-scroll">
     © 2025 TheCheemsVN - <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Vietnam.svg" alt="Vietnam" style="width:20px;height:14px;">
   </footer>
-
   <!-- NÚT ÂM THANH -->
-  <div class="sound-control shine-effect" id="soundToggle">
+  <div class="sound-control shine-effect animate-on-scroll" id="soundToggle">
     <i class="fas fa-volume-up"></i>
   </div>
   <audio id="bgm" loop>
     <source src="background.mp3" type="audio/mpeg">
   </audio>
-
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -540,38 +467,51 @@
     const CONFIG = { theme: "green", video: { blur: 1, brightness: 1 }, sound: { autoPlay: true, volume: 0.5 } };
     document.body.setAttribute('data-theme', CONFIG.theme);
     document.getElementById('bg-video').style.filter = `blur(${CONFIG.video.blur}px) brightness(${CONFIG.video.brightness})`;
-
     particlesJS("particles-js", {
       particles: { number: { value: 80 }, color: { value: "#00ff99" }, shape: { type: "circle" }, opacity: { value: 0.3 }, size: { value: 3 }, line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, move: { speed: 1 } },
       interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
     });
-
     window.addEventListener('scroll', () => {
       document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // === SCROLL ANIMATION ===
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
     });
 
     // === ANTI-INSPECT ===
     const antiInspect = document.getElementById('antiInspect');
     let devtoolsOpen = false;
     let threshold = 160;
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
         e.preventDefault();
         showAntiInspect();
       }
     });
-
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('selectstart', e => e.preventDefault());
     document.addEventListener('dragstart', e => e.preventDefault());
-
     setInterval(() => {
       if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
         if (!devtoolsOpen) { devtoolsOpen = true; showAntiInspect(); }
       } else { devtoolsOpen = false; }
     }, 500);
-
     function showAntiInspect() {
       antiInspect.classList.add('show');
       document.body.style.overflow = 'hidden';
@@ -602,7 +542,7 @@
           const path = `assets/img/${p.image}`;
           img.onload = () => {
             const card = document.createElement('div');
-            card.className = 'project-card shine-effect';
+            card.className = 'project-card shine-effect animate-on-scroll';
             card.innerHTML = `
               <div class="project-img"><img src="${path}" alt="${p.title}"></div>
               <div class="project-info">
@@ -612,16 +552,18 @@
             `;
             card.onclick = () => showProjectModal(p, path);
             projectContainer.appendChild(card);
+            observer.observe(card); // Quan sát card mới
           };
           img.onerror = () => {
             const card = document.createElement('div');
-            card.className = 'project-card shine-effect';
+            card.className = 'project-card shine-effect animate-on-scroll';
             card.innerHTML = `
               <div class="project-img" style="background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;height:500px;font-size:0.9rem;">[Ảnh lỗi]</div>
               <div class="project-info"><h3>${p.title}</h3><div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div></div>
             `;
             card.onclick = () => showProjectModal(p, '');
             projectContainer.appendChild(card);
+            observer.observe(card);
           };
           img.src = path;
         });
@@ -633,7 +575,6 @@
     function showProjectModal(project, imgPath) {
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalDesc').textContent = project.desc;
-
       const mediaContainer = document.getElementById('modalMedia');
       if (project.videoLink && project.videoLink.includes('embed')) {
         mediaContainer.innerHTML = `<iframe src="${project.videoLink}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
@@ -642,15 +583,12 @@
       } else {
         mediaContainer.innerHTML = `<div style="height:300px;background:#333;display:flex;align-items:center;justify-content:center;color:#aaa;font-style:italic;">Không có media</div>`;
       }
-
       const linksContainer = document.getElementById('modalLinks');
       linksContainer.innerHTML = project.links && project.links.length > 0
         ? project.links.map(link => `<a href="${link.url}" class="modal-link shine-effect" target="_blank" ${link.url ? '' : 'disabled'}>${link.label}</a>`).join('')
         : '<p style="color: var(--gray); font-style: italic;">Chưa có link</p>';
-
       const techContainer = document.getElementById('modalTech');
       techContainer.innerHTML = project.tags.map(t => `<span class="modal-tag shine-effect">${t}</span>`).join('');
-
       modal.style.display = 'flex';
     }
 
@@ -659,20 +597,17 @@
     const toggle = document.getElementById('soundToggle');
     let isPlaying = false;
     audio.volume = CONFIG.sound.volume;
-
     const playMusic = () => {
       audio.play().then(() => {
         isPlaying = true;
         toggle.innerHTML = '<i class="fas fa-volume-up"></i>';
       }).catch(() => {});
     };
-
     if (CONFIG.sound.autoPlay) {
       const unlock = () => { if (!isPlaying) playMusic(); document.body.removeEventListener('click', unlock); document.body.removeEventListener('touchstart', unlock); };
       document.body.addEventListener('click', unlock);
       document.body.addEventListener('touchstart', unlock);
     }
-
     toggle.addEventListener('click', () => {
       if (isPlaying) { audio.pause(); toggle.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
       else { playMusic(); }
