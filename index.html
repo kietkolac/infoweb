@@ -10,7 +10,7 @@
 /* === CẤU HÌNH CHỈNH 1 DÒNG === */
   :root {
     --theme: "green"; /* "green" | "gray" | "darkgray" */
-    --mobile-bg-shift: 50%; /* DỊCH BACKGROUND TRÊN ĐIỆN THOẠI - DỄ CHỈNH (25%, 40%, 50%...) */
+    --mobile-bg-shift: 40%; /* DỊCH BACKGROUND TRÊN ĐIỆN THOẠI - DỄ CHỈNH (25%, 40%, 50%...) */
   }
     /* MÀU THEO CHỦ ĐỀ */
     [data-theme="green"] {
@@ -329,7 +329,7 @@
 
       /* DI CHUYỂN BACKGROUND QUA PHẢI ~1/2 ĐỂ THẤY NHÂN VẬT TRÊN ĐIỆN THOẠI */
       #bg-video {
-        transform: translate(-50%, -50%) translateX(mobile-bg-shift);
+        transform: translate(-50%, -50%) translateX(18%);
       }
     }
 
@@ -392,103 +392,126 @@
   <section id="skills" class="section">
     <h2 class="section-title animate-on-scroll">Kỹ năng</h2>
     <div class="skills-grid">
-      <div class="skill-item shine-effect animate-on-scroll">
-        <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" alt="Roblox Studio">
-        <div>Ro Studio<br><small>( 6 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-html5"></i>
-        <div>HTML<br><small>( 2 Tuần )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-css3-alt"></i>
-        <div>CSS<br><small>( 2 Tuần )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-code"></i>
-        <div>C++<br><small>( 4 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-python"></i>
-        <div>Python<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-scroll"></i>
-        <div>Luau/Lua<br><small>( 6 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-js"></i>
-        <div>JavaScript<br><small>( 2 Tháng )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-copyright"></i>
-        <div>C#<br><small>( 1 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-node-js"></i>
-        <div>Node.js<br><small>( 1 Tháng )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-java"></i>
-        <div>Java (MC)<br><small>( 7 Tháng )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-paint-brush"></i>
-        <div>UI/UX<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-server"></i>
-        <div>Server MC<br><small>( 7 Tháng )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-puzzle-piece"></i>
-        <div>Scratch<br><small>( 8 Năm )</small></div>
-      </div>
-      <!-- Danh sách kỹ năng mới -->
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fab fa-github"></i>
-        <div>GitHub<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-microchip"></i>
-        <div>Electronic Engineer<br><small>( 5 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-desktop"></i>
-        <div>PC Assembly<br><small>( 4 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-terminal"></i>
-        <div>CMD / Terminal<br><small>( 4 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-bug"></i>
-        <div>Debugging<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-mobile-alt"></i>
-        <div>PC → Mobile (MobileSupport)<br><small>( 4 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-cubes"></i>
-        <div>Module Development<br><small>( 5 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-tools"></i>
-        <div>Build Systems<br><small>( 5 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-project-diagram"></i>
-        <div>3D Modeling<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-shield-alt"></i>
-        <div>DDOS Mitigation<br><small>( 3 Năm )</small></div>
-      </div>
-      <div class="skill-item shine-effect animate-on-scroll">
-        <i class="fas fa-cube"></i>
-        <div>Command Block<br><small>( Minecraft - 4 Năm )</small></div>
-      </div>
+<div class="skill-item shine-effect animate-on-scroll">
+  <img src="https://image2url.com/images/1762931213127-6cf1fed8-2666-4111-b4a3-3997fed2412f.png" alt="Roblox Studio">
+  <div>Ro Studio<br><small>( 6 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-html5"></i>
+  <div>HTML<br><small>( 1 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-css3-alt"></i>
+  <div>CSS<br><small>( 1 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-code"></i>
+  <div>C++<br><small>( 1 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-python"></i>
+  <div>Python<br><small>( 6 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-scroll"></i>
+  <div>Luau/Lua<br><small>( 6 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-js"></i>
+  <div>JavaScript<br><small>( 2 Tuần )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-copyright"></i>
+  <div>C#<br><small>( 4 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-node-js"></i>
+  <div>Node.js<br><small>( 1 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-java"></i>
+  <div>Java (MC)<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-paint-brush"></i>
+  <div>UI/UX<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-server"></i>
+  <div>Server MC<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-puzzle-piece"></i>
+  <div>Scratch<br><small>( 4 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fab fa-github"></i>
+  <div>GitHub<br><small>( 6 Tháng )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-microchip"></i>
+  <div>Electronic Engineer<br><small>( 1 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-desktop"></i>
+  <div>PC Assembly<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-terminal"></i>
+  <div>CMD / Terminal<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-bug"></i>
+  <div>Debugging<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-mobile-alt"></i>
+  <div>PC → Mobile (MobileSupport)<br><small>( 3 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-cubes"></i>
+  <div>Module Development<br><small>( 4 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-tools"></i>
+  <div>Build Systems<br><small>( 5 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-project-diagram"></i>
+  <div>3D Modeling<br><small>( 2 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-shield-alt"></i>
+  <div>DDOS Mitigation<br><small>( 2 Năm )</small></div>
+</div>
+
+<div class="skill-item shine-effect animate-on-scroll">
+  <i class="fas fa-cube"></i>
+  <div>Command Block<br><small>( Minecraft - 3 Năm )</small></div>
+</div>
+
     </div>
   </section>
   <!-- PROJECTS -->
@@ -703,64 +726,75 @@
         });
     });
 
-    // === TYPING EFFECT DỰA TRÊN SKILLS (VÒNG LẶP VÔ HẠN) ===
+// === TYPING EFFECT – INFINITE LOOP (HARD-CODED LIST) ===
     document.addEventListener("DOMContentLoaded", () => {
       const typingElement = document.querySelector(".typing");
       if (!typingElement) return;
 
-      // Lấy tên skill từ .skill-item > div (bỏ phần <small>)
-      const skills = Array.from(document.querySelectorAll(".skill-item div"))
-        .map(el => {
-          const lines = el.innerText.split("\n");
-          const name = lines[0].trim();
-          return name === "Ro Studio" ? "Roblox Developer" : name;
-        })
-        .filter(Boolean);
+      // ----- HARD-CODED LIST OF ROLES (all in English) -----
+      const roles = [
+        "Developer",
+        "Molder",
+        "GUI Designer",
+        "Scripter",
+        "Module Creator",
+        "Modeler",
+        "Coder",
+        "UI/UX Engineer",
+        "Content Creator",
+        "Game Developer",
+        "Web Designer",
+        "Roblox Developer",
+        "Manager Of MC Servers",
+        "Electronic Engineer",
+      ];
 
-      if (skills.length === 0) {
-        typingElement.textContent = "i am Developer";
-        return;
-      }
-
-      let skillIndex = 0;
-      let charIndex = 0;
+      let roleIndex = 0;      // current role
+      let charIndex = 0;      // characters typed so far
       let isDeleting = false;
       let isPaused = false;
 
-      const typingSpeed = 80;
-      const deletingSpeed = 40;
-      const pauseAfterType = 1500;
-      const pauseAfterDelete = 300;
+      const typingSpeed = 20;      // ms per character while typing
+      const deletingSpeed = 10;    // ms per character while deleting
+      const pauseAfterType = 1500; // ms pause after finishing a word
+      const pauseAfterDelete = 300; // ms pause after erasing a word
 
       function typeWriter() {
-        const current = "i am " + skills[skillIndex];
+        const prefix = "I am ";
+        const currentRole = roles[roleIndex];
+        const fullText = prefix + currentRole;
 
+        // ----- PAUSED STATE (waiting) -----
         if (isPaused) {
           requestAnimationFrame(typeWriter);
           return;
         }
 
-        if (!isDeleting && charIndex <= current.length) {
-          typingElement.textContent = current.substring(0, charIndex);
+        // ----- TYPING PHASE -----
+        if (!isDeleting && charIndex <= fullText.length) {
+          typingElement.textContent = fullText.substring(0, charIndex);
           charIndex++;
           setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
-        } 
-        else if (!isDeleting && charIndex > current.length) {
+        }
+        // ----- FINISHED TYPING → pause then start deleting -----
+        else if (!isDeleting && charIndex > fullText.length) {
           isPaused = true;
           setTimeout(() => {
             isPaused = false;
             isDeleting = true;
             requestAnimationFrame(typeWriter);
           }, pauseAfterType);
-        } 
+        }
+        // ----- DELETING PHASE -----
         else if (isDeleting && charIndex > 0) {
-          typingElement.textContent = current.substring(0, charIndex);
+          typingElement.textContent = fullText.substring(0, charIndex);
           charIndex--;
           setTimeout(() => requestAnimationFrame(typeWriter), deletingSpeed);
-        } 
+        }
+        // ----- FINISHED DELETING → move to next role -----
         else if (isDeleting && charIndex === 0) {
           isDeleting = false;
-          skillIndex = (skillIndex + 1) % skills.length;
+          roleIndex = (roleIndex + 1) % roles.length;
           isPaused = true;
           setTimeout(() => {
             isPaused = false;
@@ -769,7 +803,8 @@
         }
       }
 
-      setTimeout(() => requestAnimationFrame(typeWriter), 1000);
+      // start after a short delay so the page feels “alive”
+      setTimeout(() => requestAnimationFrame(typeWriter), 800);
     });
   </script>
 </body>
