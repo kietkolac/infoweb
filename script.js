@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingSpeed = 20, deletingSpeed = 10, pauseAfterType = 1500, pauseAfterDelete = 300;
   function typeWriter() {
     if (isPaused) return requestAnimationFrame(typeWriter);
-    const prefix = "I am ", current = roles[roleIndex], full = prefix + current;
+    const prefix = "I am a ", current = roles[roleIndex], full = prefix + current;
     if (!isDeleting && charIndex <= full.length) {
       typing.textContent = full.substring(0, charIndex++); 
       setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
