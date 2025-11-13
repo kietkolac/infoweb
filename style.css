@@ -156,8 +156,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   .modal-links { flex-direction: column; }
   .modal-media { height: 200px; }
  .sound-control {
-    bottom: 15px;
-    right: 15px;
+    bottom: 30px;
+    right: 30px;
     padding: 10px 14px;
     font-size: 1rem;
   }
