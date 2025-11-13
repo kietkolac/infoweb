@@ -1,4 +1,4 @@
-// script.js - ĐÃ XÓA shine-effect
+// script.js - ĐÃ THÊM ACTIVE NAV KHI SCROLL
 const CONFIG = { theme: "green", video: { blur: 1, brightness: 1 }, sound: { autoPlay: true, volume: 0.5 } };
 
 document.body.setAttribute('data-theme', CONFIG.theme);
@@ -14,6 +14,33 @@ particlesJS("particles-js", {
 window.addEventListener('scroll', () => {
   document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
 });
+
+// === ACTIVE NAV KHI SCROLL ===
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function setActiveLink() {
+  let current = '';
+  const scrollY = window.scrollY;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 150;
+    const sectionHeight = section.offsetHeight;
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', setActiveLink);
+window.addEventListener('load', setActiveLink);
 
 // Scroll Animation
 const observer = new IntersectionObserver((entries) => {
@@ -71,7 +98,7 @@ fetch('projects.json')
 
 function createCard(p, path, container, hasImg) {
   const card = document.createElement('div');
-  card.className = 'project-card animate-on-scroll'; // ĐÃ XÓA shine-effect
+  card.className = 'project-card animate-on-scroll';
   card.innerHTML = `
     <div class="project-img"><img src="${path}" alt="${p.title}" ${hasImg ? '' : 'style="display:none"'}>
       ${!hasImg ? '<div style="height:500px;background:#333;color:#aaa;display:flex;align-items:center;justify-content:center;">[Ảnh lỗi]</div>' : ''}
