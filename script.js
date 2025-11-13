@@ -1,12 +1,24 @@
-// script.js - ĐÃ THÊM ACTIVE NAV KHI SCROLL
-const CONFIG = { theme: "green", video: { blur: 1, brightness: 1 }, sound: { autoPlay: true, volume: 0.5 } };
+// script.js - HOÀN CHỈNH, ÂM THANH PHÁT NGAY SAU 1 CLICK
+const CONFIG = { 
+  theme: "green", 
+  video: { blur: 1, brightness: 1 }, 
+  sound: { autoPlay: true, volume: 0.5 } 
+};
 
 document.body.setAttribute('data-theme', CONFIG.theme);
 document.getElementById('bg-video').style.filter = `blur(${CONFIG.video.blur}px) brightness(${CONFIG.video.brightness})`;
 
 // Particles
 particlesJS("particles-js", {
-  particles: { number: { value: 80 }, color: { value: "#00ff99" }, shape: { type: "circle" }, opacity: { value: 0.3 }, size: { value: 3 }, line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, move: { speed: 1 } },
+  particles: { 
+    number: { value: 80 }, 
+    color: { value: "#00ff99" }, 
+    shape: { type: "circle" }, 
+    opacity: { value: 0.3 }, 
+    size: { value: 3 }, 
+    line_linked: { enable: true, color: "#00ff99", opacity: 0.1 }, 
+    move: { speed: 1 } 
+  },
   interactivity: { events: { onhover: { enable: true, mode: "repulse" } } }
 });
 
@@ -127,21 +139,61 @@ function showProjectModal(p, imgPath) {
   modal.style.display = 'flex';
 }
 
-// Sound
+// === ÂM THANH - HOÀN CHỈNH, PHÁT NGAY SAU 1 CLICK ===
 const audio = document.getElementById('bgm');
 const toggle = document.getElementById('soundToggle');
 let isPlaying = false;
+let isUnlocked = false;
+
 audio.volume = CONFIG.sound.volume;
-const playMusic = () => audio.play().then(() => { isPlaying = true; toggle.innerHTML = '<i class="fas fa-volume-up"></i>'; }).catch(() => {});
-if (CONFIG.sound.autoPlay) {
-  const unlock = () => { if (!isPlaying) playMusic(); document.body.removeEventListener('click', unlock); document.body.removeEventListener('touchstart', unlock); };
-  document.body.addEventListener('click', unlock);
-  document.body.addEventListener('touchstart', unlock);
-}
+
+// Hàm phát nhạc
+const playMusic = () => {
+  if (isUnlocked && !isPlaying) {
+    audio.play()
+      .then(() => {
+        isPlaying = true;
+        toggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+      })
+      .catch(err => {
+        console.warn("Play failed:", err);
+        isPlaying = false;
+        toggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      });
+  }
+};
+
+// Unlock âm thanh khi người dùng tương tác
+const unlockAudio = () => {
+  if (!isUnlocked) {
+    isUnlocked = true;
+    playMusic(); // Phát ngay sau lần click đầu
+    document.body.removeEventListener('click', unlockAudio);
+    document.body.removeEventListener('touchstart', unlockAudio);
+  }
+};
+
+// Lắng nghe tương tác đầu tiên
+document.body.addEventListener('click', unlockAudio);
+document.body.addEventListener('touchstart', unlockAudio);
+
+// Nút toggle
 toggle.addEventListener('click', () => {
-  if (isPlaying) { audio.pause(); toggle.innerHTML = '<i class="fas fa-volume-mute"></i>'; }
-  else playMusic();
+  if (isPlaying) {
+    audio.pause();
+    toggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  } else {
+    playMusic();
+  }
   isPlaying = !isPlaying;
+});
+
+// Loop khi kết thúc
+audio.addEventListener('ended', () => {
+  if (isPlaying) {
+    audio.currentTime = 0;
+    audio.play();
+  }
 });
 
 // EmailJS
@@ -173,13 +225,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isPaused) return requestAnimationFrame(typeWriter);
     const prefix = "I am ", current = roles[roleIndex], full = prefix + current;
     if (!isDeleting && charIndex <= full.length) {
-      typing.textContent = full.substring(0, charIndex++); setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
+      typing.textContent = full.substring(0, charIndex++); 
+      setTimeout(() => requestAnimationFrame(typeWriter), typingSpeed);
     } else if (!isDeleting && charIndex > full.length) {
-      isPaused = true; setTimeout(() => { isPaused = false; isDeleting = true; requestAnimationFrame(typeWriter); }, pauseAfterType);
+      isPaused = true; 
+      setTimeout(() => { isPaused = false; isDeleting = true; requestAnimationFrame(typeWriter); }, pauseAfterType);
     } else if (isDeleting && charIndex > 0) {
-      typing.textContent = full.substring(0, charIndex--); setTimeout(() => requestAnimationFrame(typeWriter), deletingSpeed);
+      typing.textContent = full.substring(0, charIndex--); 
+      setTimeout(() => requestAnimationFrame(typeWriter), deletingSpeed);
     } else if (isDeleting && charIndex === 0) {
-      isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; isPaused = true;
+      isDeleting = false; 
+      roleIndex = (roleIndex + 1) % roles.length; 
+      isPaused = true;
       setTimeout(() => { isPaused = false; requestAnimationFrame(typeWriter); }, pauseAfterDelete);
     }
   }
